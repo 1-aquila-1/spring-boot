@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/ebd/aluno")
-public class AlunoController {
+@RequestMapping("/ebd/matricula/aluno")
+public class MatriculaAlunoController {
     
     @PostMapping
-    public ResponseEntity<?> cadastro(){
+    public ResponseEntity<?> aluno(){
         return ResponseEntity.ok("Cadastro de aluno");
     }
 
