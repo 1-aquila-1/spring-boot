@@ -3,29 +3,32 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-	<groupId>com.1aquila1</groupId>
-	<artifactId>ebd-api-parent</artifactId>
-	<version>1.0</version>
+		<groupId>com.aquila</groupId>
+		<artifactId>ebd-parent</artifactId>
+		<version>1.0</version>
 	</parent>
-	
-	<groupId>com.1aquila1.ebd</groupId>
+
+	<groupId>com.aquila</groupId>
 	<artifactId>ebd</artifactId>
 	<version>1.0</version>
 
 	<name>ebd</name>
+
 	<description>Demo project for Spring Boot</description>
+	
 	<properties>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>

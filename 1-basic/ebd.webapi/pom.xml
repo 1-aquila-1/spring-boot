@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-	<groupId>com.1aquila1</groupId>
-	<artifactId>ebd-api-parent</artifactId>
-	<version>1.0</version>
+		<groupId>com.aquila</groupId>
+		<artifactId>ebd-parent</artifactId>
+		<version>1.0</version>
 	</parent>
 
-	<groupId>com.aquila.ebd.webapi</groupId>
+	<groupId>com.aquila</groupId>
 	<artifactId>ebd-webapi</artifactId>
 	<version>1.0</version>
 
@@ -18,7 +18,9 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+	
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -51,10 +53,11 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.1aquila1.ebd</groupId>
+			<groupId>com.aquila</groupId>
 			<artifactId>ebd</artifactId>
 			<version>1.0</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
