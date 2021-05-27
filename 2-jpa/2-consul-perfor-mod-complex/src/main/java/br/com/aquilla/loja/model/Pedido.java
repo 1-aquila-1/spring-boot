@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,22 +23,28 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "produtos")
-public class Produto {
+@Table(name = "pedidos")
+public class Pedido {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private String descricao;
-	private BigDecimal preco;
-	private LocalDate dataCadastro = LocalDate.now();
-	@ManyToOne
-	private Categoria categoria;
-	@OneToMany(mappedBy = "produto")
+    @Column(name="valor_total")
+    private BigDecimal valorTotal;
+    private LocalDate data = LocalDate.now();
+    @ManyToOne
+    private Cliente cliente;
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemPedido> itens = new ArrayList<>();
 
-	public void adicionarItem(ItemPedido item){
-        item.setProduto(this);
+
+    public Pedido(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+
+    public void adicionarItem(ItemPedido item){
+        item.setPedido(this);
         this.itens.add(item);
     }
 }
