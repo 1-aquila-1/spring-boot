@@ -13,7 +13,14 @@ import br.com.aquilla.loja.util.JPAUtil;
 class CadastroDeProdutoTest {
 
 	public static void main(String[] args) {
+		cadastrarProduto();
+		EntityManager em = JPAUtil.getEntityManager();
+		ProdutoDao produtoDao = new ProdutoDao(em);
+		var preco = produtoDao.buscarPrecoProdutoNome("Xiaomi Redmi");
+		System.out.println(preco);
+	}
 
+	private static void cadastrarProduto() {
 		Categoria categoria = new Categoria();
 		categoria.setNome("Celulares");
 
@@ -28,18 +35,10 @@ class CadastroDeProdutoTest {
 		CategoriaDao categoriaDao = new CategoriaDao(em);
 
 		em.getTransaction().begin();
-		em.persist(categoria);
-		em.persist(celular);
-		celular.setNome("XPTO");
-
-		em.flush();
-		em.clear();
-		celular = em.merge(celular);
-		celular.setNome("123");
-
-		em.flush();
-		em.remove(celular);
-		em.flush();
+		categoriaDao.cadastrar(categoria);
+		produtoDao.cadastrar(celular);
+		em.getTransaction().commit();
+		em.close();
 	}
 
 }
