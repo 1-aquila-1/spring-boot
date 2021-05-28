@@ -37,4 +37,8 @@ public class ItemPedido {
 		this.precoUnitario = produto.getPreco();
 		this.produto = produto;
 	}
+
+    public BigDecimal getValor() {
+        return this.precoUnitario.multiply(BigDecimal.valueOf(this.quantidade));
+    }
 }

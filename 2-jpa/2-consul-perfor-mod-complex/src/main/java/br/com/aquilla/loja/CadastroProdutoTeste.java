@@ -15,8 +15,12 @@ public class CadastroProdutoTeste {
         cadastrarProduto();
         EntityManager em = JPAUtil.getEntityManager();
         ProdutoDao produtoDao = new ProdutoDao(em);
-        var preco = produtoDao.buscarPrecoProdutoNome("Xiaomi Redmi");
-        System.out.println(preco);
+        // var preco = produtoDao.buscarPrecoProdutoNome("Xiaomi Redmi");
+        // System.out.println(preco);
+        var produtos = produtoDao.buscarPorNomeCategoria("Celulares");
+        produtos.forEach(a -> {
+            System.out.println(a.getDescricao());
+        });
     }
 
     private static void cadastrarProduto() {

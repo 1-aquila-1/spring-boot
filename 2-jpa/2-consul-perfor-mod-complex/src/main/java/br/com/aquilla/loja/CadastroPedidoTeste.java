@@ -33,8 +33,16 @@ public class CadastroPedidoTeste {
         em.getTransaction().begin();
         pedidoDao.cadastrar(pedido);
         em.getTransaction().commit();
-        em.close();
 
+        // var valorTotal = pedidoDao.valorTotalPedido();
+        // System.out.println(valorTotal);
+        
+        var objetos = pedidoDao.relatorioVendas();
+        objetos.forEach(a -> {
+            System.out.println(a.getNomeProduto() + " | " + a.getQuantidadeVendida() + " | " + a.getQuantidadeVendida());
+        });
+        
+        em.close();
     }
 
     private static void popularBancoDados() {
