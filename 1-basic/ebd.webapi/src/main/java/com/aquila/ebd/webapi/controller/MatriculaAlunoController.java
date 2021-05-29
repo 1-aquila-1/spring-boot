@@ -1,5 +1,7 @@
 package com.aquila.ebd.webapi.controller;
 
+import com.aquila.ebd.VO.MatriculaVO;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +19,8 @@ public class MatriculaAlunoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> editar(){
-        return ResponseEntity.ok("Edição de aluno");
+    public ResponseEntity<MatriculaVO> editar(){
+        return ResponseEntity.ok(new MatriculaVO());
     }
 
     @GetMapping("/{id}")
