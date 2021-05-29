@@ -5,11 +5,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,6 +26,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "produtos")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Produto {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +34,7 @@ public class Produto {
 	private String nome;
 	private String descricao;
 	private BigDecimal preco;
+	@Column(name = "data_cadastro")
 	private LocalDate dataCadastro = LocalDate.now();
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Categoria categoria;

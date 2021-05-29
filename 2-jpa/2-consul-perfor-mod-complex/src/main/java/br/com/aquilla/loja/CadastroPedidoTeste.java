@@ -8,8 +8,10 @@ import br.com.aquilla.loja.dao.CategoriaDao;
 import br.com.aquilla.loja.dao.ClienteDao;
 import br.com.aquilla.loja.dao.PedidoDao;
 import br.com.aquilla.loja.dao.ProdutoDao;
+import br.com.aquilla.loja.model.CategoraId;
 import br.com.aquilla.loja.model.Categoria;
 import br.com.aquilla.loja.model.Cliente;
+import br.com.aquilla.loja.model.DadoPessoal;
 import br.com.aquilla.loja.model.ItemPedido;
 import br.com.aquilla.loja.model.Pedido;
 import br.com.aquilla.loja.model.Produto;
@@ -37,18 +39,17 @@ public class CadastroPedidoTeste {
         // var valorTotal = pedidoDao.valorTotalPedido();
         // System.out.println(valorTotal);
         
-        var objetos = pedidoDao.relatorioVendas();
-        objetos.forEach(a -> {
-            System.out.println(a.getNomeProduto() + " | " + a.getQuantidadeVendida() + " | " + a.getQuantidadeVendida());
-        });
+        // var objetos = pedidoDao.relatorioVendas();
+        // objetos.forEach(a -> {
+        //     System.out.println(a.getNomeProduto() + " | " + a.getQuantidadeVendida() + " | " + a.getQuantidadeVendida());
+        // });
         
         em.close();
     }
 
     private static void popularBancoDados() {
 
-        Categoria categoria = new Categoria();
-        categoria.setNome("Celulares");
+        Categoria categoria = new Categoria(new CategoraId("Celulares", "xpto"));
 
         Produto celular = new Produto();
         celular.setNome("Xiaomi Redmi");
@@ -56,7 +57,8 @@ public class CadastroPedidoTeste {
         celular.setPreco(new BigDecimal("800"));
         celular.setCategoria(categoria);
 
-        Cliente cliente = new Cliente("Rodrigo", "123456");
+        Cliente cliente = new Cliente();
+        cliente.setDadosPessoais(new DadoPessoal("Rodrigo", "123456"));
 
         EntityManager em = JPAUtil.getEntityManager();
         ProdutoDao produtoDao = new ProdutoDao(em);

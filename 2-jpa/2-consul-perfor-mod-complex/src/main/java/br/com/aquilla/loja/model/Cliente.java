@@ -1,5 +1,6 @@
 package br.com.aquilla.loja.model;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,11 +20,6 @@ public class Cliente {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-    private String nome;
-    private String cpf;
-
-    public Cliente(String nome, String cpf) {
-        this.nome = nome;
-        this.cpf = cpf;
-    }
+    @Embedded
+    private DadoPessoal dadosPessoais;
 }

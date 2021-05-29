@@ -8,8 +8,10 @@ import br.com.aquilla.loja.dao.CategoriaDao;
 import br.com.aquilla.loja.dao.ClienteDao;
 import br.com.aquilla.loja.dao.PedidoDao;
 import br.com.aquilla.loja.dao.ProdutoDao;
+import br.com.aquilla.loja.model.CategoraId;
 import br.com.aquilla.loja.model.Categoria;
 import br.com.aquilla.loja.model.Cliente;
+import br.com.aquilla.loja.model.DadoPessoal;
 import br.com.aquilla.loja.model.ItemPedido;
 import br.com.aquilla.loja.model.Pedido;
 import br.com.aquilla.loja.model.Produto;
@@ -22,14 +24,13 @@ public class PerformaceConsultaTeste {
         PedidoDao pedidoDao = new PedidoDao(em);
         var pedido = pedidoDao.buscarPedidoCliente(1L);
         em.close();
-        System.out.println(pedido.getCliente().getNome());
+        System.out.println(pedido.getCliente().getDadosPessoais().getNome());
 
     }
 
     private static void popularBancoDados() {
 
-        Categoria categoria = new Categoria();
-        categoria.setNome("Celulares");
+        Categoria categoria = new Categoria(new CategoraId("Celulares", "xpto"));
 
         Produto celular = new Produto();
         celular.setNome("Xiaomi Redmi");
@@ -37,7 +38,8 @@ public class PerformaceConsultaTeste {
         celular.setPreco(new BigDecimal("800"));
         celular.setCategoria(categoria);
 
-        Cliente cliente = new Cliente("Rodrigo", "123456");
+        Cliente cliente = new Cliente();
+        cliente.setDadosPessoais(new DadoPessoal("Rodrigo", "123456"));
 
         EntityManager em = JPAUtil.getEntityManager();
         ProdutoDao produtoDao = new ProdutoDao(em);

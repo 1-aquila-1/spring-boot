@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import br.com.aquilla.loja.dao.CategoriaDao;
 import br.com.aquilla.loja.dao.ProdutoDao;
+import br.com.aquilla.loja.model.CategoraId;
 import br.com.aquilla.loja.model.Categoria;
 import br.com.aquilla.loja.model.Produto;
 import br.com.aquilla.loja.util.JPAUtil;
@@ -14,18 +15,13 @@ public class CadastroProdutoTeste {
     public static void main(String[] args) {
         cadastrarProduto();
         EntityManager em = JPAUtil.getEntityManager();
-        ProdutoDao produtoDao = new ProdutoDao(em);
-        // var preco = produtoDao.buscarPrecoProdutoNome("Xiaomi Redmi");
-        // System.out.println(preco);
-        var produtos = produtoDao.buscarPorNomeCategoria("Celulares");
-        produtos.forEach(a -> {
-            System.out.println(a.getDescricao());
-        });
+        var obj = em.find(Categoria.class, new CategoraId("Celulares", "xpto"));
+        System.out.println(obj.getId().getNome());
+        em.close();
     }
 
     private static void cadastrarProduto() {
-        Categoria categoria = new Categoria();
-        categoria.setNome("Celulares");
+        Categoria categoria = new Categoria(new CategoraId("Celulares", "xpto"));
 
         Produto celular = new Produto();
         celular.setNome("Xiaomi Redmi");
