@@ -4,17 +4,16 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.aquila.springdata.model.Cargo;
-import br.com.aquila.springdata.repository.CargoRepository;
+import br.com.aquila.springdata.interfaces.auxiliar.IExecuta;
 
 @SpringBootApplication
 public class SpringDataApplication implements CommandLineRunner{
 
-	public SpringDataApplication(CargoRepository repository) {
-		this.repository = repository;
+	public SpringDataApplication(IExecuta executa) {
+		this.executa = executa;
 	}
 
-	private CargoRepository repository;
+	private IExecuta executa;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringDataApplication.class, args);
@@ -22,8 +21,7 @@ public class SpringDataApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		Cargo cargo = new Cargo("Programador");
-		repository.save(cargo);
+		executa.run();
 	}
 
 }
