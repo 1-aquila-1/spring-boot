@@ -1,11 +1,13 @@
 package br.com.aquila.springdata.auxiliar;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import br.com.aquila.springdata.interfaces.auxiliar.IExecuta;
 import br.com.aquila.springdata.interfaces.repository.ICargoRepository;
 import br.com.aquila.springdata.model.Cargo;
 
+@Qualifier("CargoRepositorio")
 @Component
 public class CargoRepositorioTeste implements IExecuta{
 
@@ -18,7 +20,7 @@ public class CargoRepositorioTeste implements IExecuta{
 
     @Override
     public void run() {
-        // salvar();
+        salvar();
         // obterCargo(1L);
         // atualizar();
         // deletar();

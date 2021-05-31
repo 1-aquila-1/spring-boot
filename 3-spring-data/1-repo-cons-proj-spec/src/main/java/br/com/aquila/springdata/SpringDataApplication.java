@@ -1,5 +1,6 @@
 package br.com.aquila.springdata;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,7 +10,7 @@ import br.com.aquila.springdata.interfaces.auxiliar.IExecuta;
 @SpringBootApplication
 public class SpringDataApplication implements CommandLineRunner{
 
-	public SpringDataApplication(IExecuta executa) {
+	public SpringDataApplication( @Qualifier("FuncionarioRepositorio") IExecuta executa) {
 		this.executa = executa;
 	}
 
