@@ -4,11 +4,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import br.com.aquila.springdata.model.Funcionario;
 
-public interface IFuncionarioRepository extends CrudRepository<Funcionario, Long>{
+public interface IFuncionarioRepository extends PagingAndSortingRepository<Funcionario, Long>{
     List<Funcionario> findByNome(String nome);
 
     @Query("SELECT f FROM Funcionario f WHERE f.nome = :nome AND f.salario >= :salario AND f.dataContratacao = :data")

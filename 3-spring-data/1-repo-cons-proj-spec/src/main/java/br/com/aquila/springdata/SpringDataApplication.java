@@ -6,14 +6,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.aquila.springdata.interfaces.auxiliar.IExecuta;
+import br.com.aquila.springdata.interfaces.auxiliar.ISeed;
 
 @SpringBootApplication
 public class SpringDataApplication implements CommandLineRunner{
 
-	public SpringDataApplication( @Qualifier("FuncionarioRepositorio") IExecuta executa) {
+	public SpringDataApplication(@Qualifier("FuncionarioRepositorio") IExecuta executa, ISeed seed) {
 		this.executa = executa;
+		this.seed = seed;
 	}
 
+	private ISeed seed;
 	private IExecuta executa;
 
 	public static void main(String[] args) {
@@ -22,6 +25,7 @@ public class SpringDataApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+		seed.seed();
 		executa.run();
 	}
 

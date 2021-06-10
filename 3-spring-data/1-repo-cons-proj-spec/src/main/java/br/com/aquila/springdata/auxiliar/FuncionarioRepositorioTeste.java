@@ -3,10 +3,15 @@ package br.com.aquila.springdata.auxiliar;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import br.com.aquila.springdata.interfaces.auxiliar.IExecuta;
 import br.com.aquila.springdata.interfaces.repository.IFuncionarioRepository;
+import br.com.aquila.springdata.model.Funcionario;
 
 @Qualifier("FuncionarioRepositorio")
 @Component
@@ -20,7 +25,25 @@ public class FuncionarioRepositorioTeste implements IExecuta {
 
     @Override
     public void run() {
-        testeBuscarFuncionarioNome();
+        testePaginacaoOrdenacao();
+    }
+
+    private void testePaginacaoOrdenacao(){
+        int page = 0, size = 5;
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "nome"));
+        Page<Funcionario> funcionarios = repositorio.findAll(pageable);
+        System.out.println("Página atual .: " + funcionarios.getNumber());
+        System.out.println("Lista de página .: " + funcionarios.getTotalPages());
+        funcionarios.forEach( f -> System.out.println(f));
+    }
+
+    private void testePaginacao(){
+        int page = 1, size = 5;
+        Pageable pageable = PageRequest.of(page, size, Sort.unsorted());
+        Page<Funcionario> funcionarios = repositorio.findAll(pageable);
+        System.out.println("Página atual .: " + funcionarios.getNumber());
+        System.out.println("Lista de página .: " + funcionarios.getTotalPages());
+        funcionarios.forEach( f -> System.out.println(f));
     }
 
     private void testeBuscarFuncionarioNome() {
