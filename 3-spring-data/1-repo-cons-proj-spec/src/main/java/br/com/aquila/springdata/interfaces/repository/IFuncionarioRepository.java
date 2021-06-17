@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import br.com.aquila.springdata.interfaces.model.FuncionarioProjecao;
 import br.com.aquila.springdata.model.Funcionario;
 
 public interface IFuncionarioRepository extends PagingAndSortingRepository<Funcionario, Long>{
@@ -16,4 +17,7 @@ public interface IFuncionarioRepository extends PagingAndSortingRepository<Funci
 
     @Query(value="SELECT f FROM funcionario f WHERE f.dataContratacao >= :data", nativeQuery = true)
     List<Funcionario> findDataContratacaoMaior(LocalDate data);
+
+    @Query(value = "SELECT f.id, f.nome, f.salario FROM funcionario f", nativeQuery = true)
+    List<FuncionarioProjecao> findFuncionarioSalario();
 }

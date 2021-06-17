@@ -25,7 +25,12 @@ public class FuncionarioRepositorioTeste implements IExecuta {
 
     @Override
     public void run() {
-        testePaginacaoOrdenacao();
+        testeProjecao();
+    }
+
+    private void testeProjecao(){
+        var funcionarios = repositorio.findFuncionarioSalario();
+        funcionarios.forEach( f -> System.out.println(f.getId() + " | " + f.getNome() + " | " + f.getSalario()));
     }
 
     private void testePaginacaoOrdenacao(){
