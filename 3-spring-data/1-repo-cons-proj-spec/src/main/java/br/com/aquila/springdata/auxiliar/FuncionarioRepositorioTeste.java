@@ -7,11 +7,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import br.com.aquila.springdata.interfaces.auxiliar.IExecuta;
 import br.com.aquila.springdata.interfaces.repository.IFuncionarioRepository;
 import br.com.aquila.springdata.model.Funcionario;
+import br.com.aquila.springdata.repository.FuncionarioSpecificationRepository;
 
 @Qualifier("FuncionarioRepositorio")
 @Component
@@ -25,7 +27,16 @@ public class FuncionarioRepositorioTeste implements IExecuta {
 
     @Override
     public void run() {
-        testeProjecao();
+        testeConsultaSpecification();
+    }
+
+    private void testeConsultaSpecification(){
+        var nome = "p";
+        var cpf = "123456789";
+        var funcionarios = repositorio.findAll(
+            Specification.where(FuncionarioSpecificationRepository.nome(nome)).or(FuncionarioSpecificationRepository.cpf(cpf))
+            );
+        funcionarios.forEach( f -> System.out.println(f.getId() + " | " + f.getNome() + " | " + f.getSalario()));
     }
 
     private void testeProjecao(){
