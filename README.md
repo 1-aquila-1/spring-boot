@@ -1,5 +1,3 @@
-# Tópicos relacionado ao ecossistema do spring
+# Spring Boot
 
-- 1-crud
-  - API Rest com as operações fundamentas em diversas API's
   
